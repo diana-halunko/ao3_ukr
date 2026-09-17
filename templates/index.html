@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>AO3 Ukraine Catalog</title>
+</head>
+<body>
+    <h1>Каталог українських фанфіків з AO3</h1>
+    
+    <ul>
+        {% for work in works %}
+            <li>
+                <a href="{{ work[4] }}" target="_blank"><strong>{{ work[1] }}</strong></a> 
+                — {{ work[2] }} (Фендом: {{ work[3] }})
+            </li>
+        {% else %}
+            <li>База даних поки порожня... Зачекай трохи!</li>
+        {% endfor %}
+    </ul>
+
+    <div style="margin-top: 20px;">
+        {% if page > 1 %}
+            <a href="/?page={{ page - 1 }}">← Попередня</a>
+        {% endif %}
+
+        <span> Сторінка {{ page }} з {{ total_pages }} </span>
+
+        {% if page < total_pages %}
+            <a href="/?page={{ page + 1 }}">Наступна →</a>
+        {% endif %}
+    </div>
+</body>
+</html>
