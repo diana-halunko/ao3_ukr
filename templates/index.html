@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог українських фанфіків з AO3</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 30px auto; padding: 0 15px; }
+        .card { border: 1px solid #ddd; padding: 15px; margin-bottom: 12px; border-radius: 6px; }
+        .pagination { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Каталог українських фанфіків з AO3</h1>
+
+    {% for work in works %}
+        <div class="card">
+            <h3><a href="{{ work['url'] }}" target="_blank">{{ work['title'] }}</a></h3>
+            <p><strong>Автор:</strong> {{ work['author'] }} | <strong>Фендом:</strong> {{ work['fandom'] }}</p>
+        </div>
+    {% else %}
+        <p>База даних поки порожня...</p>
+    {% endfor %}
+
+    <div class="pagination">
+        {% if page > 1 %}
+            <a href="/?page={{ page - 1 }}">← Попередня</a>
+        {% endif %}
+        <span>Сторінка {{ page }} з {{ total_pages }}</span>
+        {% if page < total_pages %}
+            <a href="/?page={{ page + 1 }}">Наступна →</a>
+        {% endif %}
+    </div>
+</body>
+</html>
